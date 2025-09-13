@@ -1,4 +1,4 @@
-import PizzaList from "@/components/home/pizza-list";
+import PizzaList from "@/components/home/pizzaList";
 import Header from "@/components/layout/header";
 import api from "@/lib/axios";
 
