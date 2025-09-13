@@ -4,17 +4,26 @@ import { Product } from "@/generated/prisma";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { formatPrice } from "@/lib/utils";
+import { useCartStore } from "@/stores/cartStore";
 
 type Props = {
     data: Product;
 }
 
-const handleAddToCart = (product: Product) => {
-  // Lógica para adicionar o produto ao carrinho
-  console.log(`Adicionar ${product.name} ao carrinho`);
-}
+
 
 const PizzaItem = ({ data }: Props) => {
+    const cart = useCartStore()
+
+const handleAddToCart = () => {
+    cart.addItem({
+        productId: data.id,
+        quantity: 1
+    })
+    cart.setOpen(true)
+}
+
+
   return (
       <div className="text-sm bg-secondary p-4 rounded-md">
           <Image src={data.image} alt={data.name} width={200} height={200} className="w-full mb-3" />
@@ -22,7 +31,7 @@ const PizzaItem = ({ data }: Props) => {
             <span className="font-semibold">{formatPrice(data.price)}</span>
           <p className="truncate mb-3">{data.ingredients}</p>
           <div className="text-center">
-          <Button onClick={() => handleAddToCart(data)}>
+          <Button onClick={() => handleAddToCart()}>
               Adicionar ao Carrinho</Button>
               
           </div>

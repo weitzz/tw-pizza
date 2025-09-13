@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import React from 'react'
+import CartButton from '../cart/cartButton'
 import { Button } from '../ui/button'
+
 
 function Header() {
   return (
@@ -8,7 +10,7 @@ function Header() {
           <Link href="/" className=' text-2xl font-bold'>Pizzaria-TW</Link>
           <div className='flex gap-2'>
               <Button variant='outline'>Login / Cadastro</Button>
-              <Button>Carrinho</Button>
+              <CartButton/>
           </div>
     </header>
   )
