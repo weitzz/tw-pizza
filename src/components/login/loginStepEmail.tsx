@@ -3,16 +3,13 @@
 import { useState } from "react"
 import { CustomInput } from "../layout/customInput"
 import { Button } from "../ui/button"
-import { z } from "zod"
 import api from "@/lib/axios"
+import { validateEmailSchema } from "@/lib/validations"
 
 type Props = {
     onValidate: (hasEmail: boolean, email: string) => void
 }
 
-const schema = z.object({
-    email: z.string().email({ message: "Email inválido" })
-})
 
 export const LoginStepEmail = ({ onValidate }: Props) => {
     const [errors, setErrors] = useState<any>(null)
@@ -21,7 +18,7 @@ export const LoginStepEmail = ({ onValidate }: Props) => {
 
     const handleButton = async () => {
         setErrors(null)
-        const validData = schema.safeParse({
+        const validData = validateEmailSchema.safeParse({
             email: emailField
         })
         if (!validData.success) {
