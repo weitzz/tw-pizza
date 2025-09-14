@@ -1,17 +1,19 @@
 import Link from 'next/link'
-import React from 'react'
 import CartButton from '../cart/cartButton'
-import { Button } from '../ui/button'
+import LoginButton from '../login/loginButton'
+import { cookies } from 'next/headers'
 
 
-function Header() {
+async function Header() {
+  const cookieStore = await cookies()
+  const token = cookieStore.get('token')
   return (
-      <header className='container mx-auto flex my-4 p-5 items-center justify-between bg-secondary rounded-md'>
-          <Link href="/" className=' text-2xl font-bold'>Pizzaria-TW</Link>
-          <div className='flex gap-2'>
-              <Button variant='outline'>Login / Cadastro</Button>
-              <CartButton/>
-          </div>
+    <header className='container mx-auto flex my-4 p-5 items-center justify-between bg-secondary rounded-md'>
+      <Link href="/" className=' text-2xl font-bold'>TW-Pizzas</Link>
+      <div className='flex gap-2'>
+        <LoginButton initialState={token ? true : false} />
+        <CartButton />
+      </div>
     </header>
   )
 }

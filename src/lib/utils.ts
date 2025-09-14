@@ -10,3 +10,9 @@ export function formatPrice(price: number | string | Prisma.Decimal) {
   return parseFloat(price.toString()).toLocaleString('pt-BR',
     { style: 'currency', currency: 'BRL', minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
+
+export function checkFieldError(fieldName: string, errors: any) {
+  if (errors === null) return false
+  if (!errors[fieldName]) return false
+  return errors[fieldName][0]
+}
