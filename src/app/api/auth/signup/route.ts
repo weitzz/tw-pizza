@@ -1,5 +1,4 @@
 import { createUser, createUserToken, hasEmail } from "@/services/authService";
-import { error } from "console";
 import { NextResponse } from "next/server";
 
 

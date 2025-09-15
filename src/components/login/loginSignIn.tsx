@@ -1,32 +1,31 @@
 'use client'
+import { useAuthStore } from '@/stores/authStore'
+import React, { useState } from 'react'
+import { CustomInput } from '../layout/customInput'
+import { loginSchema } from '@/lib/validations'
+import api from '@/lib/axios'
+import { Button } from '../ui/button'
 
-import { useAuthStore } from "@/stores/authStore"
-import { useState } from "react"
-import { registerSchema } from '@/lib/validations'
-import api from "@/lib/axios"
-import { CustomInput } from "../layout/customInput"
-import { Button } from "../ui/button"
 type Props = {
     email: string
 
 }
 
-export const LoginSignup = ({ email }: Props) => {
+
+export const LoginSignIn = ({ email }: Props) => {
     const auth = useAuthStore()
     const [errors, setErrors] = useState<any>(null)
     const [loading, setLoading] = useState(false)
-    const [nameField, setNameField] = useState('')
     const [emailField, setEmailField] = useState(email)
     const [passwordField, setPasswordField] = useState('')
-    const [passwordConfirmField, setPasswordConfirmField] = useState('')
+
+
 
     const handleButton = async () => {
         setErrors(null)
-        const validData = registerSchema.safeParse({
-            name: nameField,
+        const validData = loginSchema.safeParse({
             email: emailField,
             password: passwordField,
-            confirmPassword: passwordConfirmField
         })
         if (!validData.success) {
             setErrors(validData.error.flatten().fieldErrors)
@@ -34,17 +33,16 @@ export const LoginSignup = ({ email }: Props) => {
         }
         try {
             setLoading(true)
-            const signupReq = await api.post('/auth/signup', {
-                name: validData.data.name,
+            const signinReq = await api.post('/auth/signin', {
                 email: validData.data.email,
                 password: validData.data.password,
 
             })
             setLoading(false)
-            if (!signupReq.data.token) {
-                alert(signupReq.data.error)
+            if (!signinReq.data.token) {
+                alert(signinReq.data.error)
             } else {
-                auth.setToken(signupReq.data.token)
+                auth.setToken(signinReq.data.token)
                 auth.setOpen(false)
             }
 
@@ -54,20 +52,8 @@ export const LoginSignup = ({ email }: Props) => {
 
 
     }
-
     return (
         <>
-            <div>
-                <p className="mb-2">Digite seu Nome</p>
-                <CustomInput name="name"
-                    errors={errors}
-                    disabled={loading}
-                    type="text"
-                    autoFocus
-                    value={nameField}
-                    onChange={e => setNameField(e.target.value)} />
-            </div>
-
             <div>
                 <p className="mb-2">Digite seu Email</p>
                 <CustomInput name="email"
@@ -87,18 +73,7 @@ export const LoginSignup = ({ email }: Props) => {
                     value={passwordField}
                     onChange={e => setPasswordField(e.target.value)} />
             </div>
-
-            <div>
-                <p className="mb-2">Repita sua Senha</p>
-                <CustomInput name="passwordConfirm"
-                    errors={errors}
-                    disabled={loading}
-                    type="password"
-                    autoFocus
-                    value={passwordConfirmField}
-                    onChange={e => setPasswordConfirmField(e.target.value)} />
-            </div>
-            <Button disabled={loading} onClick={handleButton}>Cadastrar</Button>
+            <Button disabled={loading} onClick={handleButton}>Entrar</Button>
         </>
     )
 }

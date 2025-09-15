@@ -1,11 +1,14 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog"
 import { useAuthStore } from "@/stores/authStore"
 import { Button } from "../ui/button"
 import { ArrowLeft } from "lucide-react"
 import { LoginStepEmail } from "./loginStepEmail"
+import { LoginSignup } from "./loginSignup"
+import { getCookie } from "cookies-next/client"
+import { LoginSignIn } from "./loginSignIn"
 
 type Steps = "EMAIL" | "SIGNUP" | "SIGNIN"
 
@@ -14,6 +17,12 @@ export const LoginDialog = () => {
     const auth = useAuthStore()
     const [step, setStep] = useState<Steps>('EMAIL')
     const [emailField, setEmailField] = useState('')
+
+
+    useEffect(() => {
+        const token = getCookie('token')
+        if (token) auth.setToken(token)
+    }, [])
 
     const handleStepEmail = (hasEmail: boolean, email: string) => {
         setEmailField(email)
@@ -40,11 +49,9 @@ export const LoginDialog = () => {
                 </DialogHeader>
 
                 <div className="flex flex-col gap-4">
-                    {step === "EMAIL" && <>
-                        <LoginStepEmail onValidate={handleStepEmail} />
-                    </>}
-                    {step === "SIGNUP" && "Cadastro"}
-                    {step === "SIGNIN" && "Login"}
+                    {step === "EMAIL" && <LoginStepEmail onValidate={handleStepEmail} />}
+                    {step === "SIGNUP" && <LoginSignup email={emailField} />}
+                    {step === "SIGNIN" && <LoginSignIn email={emailField} />}
                 </div>
             </DialogContent>
         </Dialog>
