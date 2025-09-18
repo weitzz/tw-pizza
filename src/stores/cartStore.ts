@@ -1,4 +1,3 @@
-import { Product } from "@/generated/prisma";
 import { CartItem } from "@/types/cart-item";
 import { create } from 'zustand'
 

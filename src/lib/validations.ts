@@ -21,6 +21,8 @@ export const loginSchema = z.object({
     password: z.string().min(6, "Campo obrigatório"),
 });
 
+export type ValidateEmailSchema = z.infer<typeof validateEmailSchema>
+
 export type LoginSchema = z.infer<typeof loginSchema>
 
 export type RegisterSchema = z.infer<typeof registerSchema>;
