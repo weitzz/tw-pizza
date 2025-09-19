@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍕 TW-Pizzas – Projeto de Pizzaria
 
-## Getting Started
+Projeto de pizzaria desenvolvido com Next.js, integrando pagamento via Strapi, autenticação e criptografia. Banco de dados PostgreSQL gerenciado com Prisma, rodando em Docker.
 
-First, run the development server:
+---
+## 🛠 Tecnologias Utilizadas
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Next.js 15** – Framework React moderno para Server Components e Server Actions.
+
+- **Tailwind CSS** – Framework CSS utilitário para estilização rápida.
+
+- **ShadCN/UI** – Biblioteca de componentes UI modernos.
+
+- **Zustand** – Gerenciamento de estado leve para React.
+- **Prisma** – ORM para PostgreSQL.
+
+- **PostgreSQL** – Banco de dados relacional, rodando via **Docker**.
+
+- **Strapi** – Backend headless CMS, usado para integração de pagamento.
+
+- **Autenticação & Bcryptjs** – Registro, login e criptografia de senhas.
+
+- **Axios** – Chamadas HTTP para APIs externas (Strapi, validações, etc).
+
+---
+## ⚡ Funcionalidades
+
+✅ Cadastro e login de usuários com criptografia de senha (bcryptjs)
+✅ Autenticação com tokens UUID salvos no banco
+✅ Modal de login/cadastro estilizado com ShadCN/UI
+✅ Validação de formulários com Zod
+✅ Integração com Strapi para processar pagamentos
+✅ Persistência de dados com PostgreSQL + Prisma
+
+
+---
+
+### 🚀 Como Rodar
+
+1. Clone o projeto:
+```
+ git clone https://github.com/seu-usuario/tw-pizzas.git
+cd tw-pizzas
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Instale as dependências:
+```
+ npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Suba o banco com Docker:
+```
+ docker compose up -d
+```
+4. Configure as variáveis de ambiente:
+```
+DATABASE_URL=postgresql://user:password@localhost:5432/tw-pizzas
+NEXT_PUBLIC_STRAPI_URL=https://seu-strapi.com
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+5. Rode as migrations:
+```
+ npx prisma migrate dev
+```
 
-## Learn More
+6. Inicie o projeto:
+```
+ npm run dev
+```
+7. Abra no navegador:
+```
+ http://localhost:3000
+```
+## 🔒 Segurança
 
-To learn more about Next.js, take a look at the following resources:
+- Senhas criptografadas com bcryptjs
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Autenticação baseada em UUID tokens persistidos no banco
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Banco rodando em container Docker isolado
 
-## Deploy on Vercel
+## 📌 Licença
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Este projeto está sob a Licença MIT
