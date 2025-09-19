@@ -25,12 +25,18 @@ Projeto de pizzaria desenvolvido com Next.js, integrando pagamento via Strapi, a
 ---
 ## ⚡ Funcionalidades
 
-✅ Cadastro e login de usuários com criptografia de senha (bcryptjs)
-✅ Autenticação com tokens UUID salvos no banco
-✅ Modal de login/cadastro estilizado com ShadCN/UI
-✅ Validação de formulários com Zod
-✅ Integração com Strapi para processar pagamentos
-✅ Persistência de dados com PostgreSQL + Prisma
+✅ Cadastro e login de usuários com criptografia de senha (bcryptjs).
+
+✅ Autenticação com tokens UUID salvos no banco.
+
+✅ Modal de login/cadastro estilizado com ShadCN/UI.
+
+✅ Validação de formulários com Zod.
+
+✅ Integração com Strapi para processar pagamentos.
+
+✅ Persistência de dados com PostgreSQL + Prisma.
+
 
 
 ---
