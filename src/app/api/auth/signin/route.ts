@@ -1,4 +1,4 @@
-import { createUserToken, hasEmail, validateAuth } from "@/services/authService";
+import { createUserToken, validateAuth } from "@/services/authService";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
