@@ -69,14 +69,18 @@ NEXT_PUBLIC_STRAPI_URL=https://seu-strapi.com
  npx prisma migrate dev
 ```
 
-6. Inicie o projeto:
+6. Execute o seed para popular o banco:
+```
+ npx prisma db seed
+```
+
+7. Inicie o projeto:
 ```
  npm run dev
 ```
-7. Abra no navegador:
+8. Abra no navegador:
 ```
  http://localhost:3000
-```
 ## 🔒 Segurança
 
 - Senhas criptografadas com bcryptjs
