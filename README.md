@@ -81,6 +81,8 @@ NEXT_PUBLIC_STRAPI_URL=https://seu-strapi.com
 8. Abra no navegador:
 ```
  http://localhost:3000
+```
+
 ## 🔒 Segurança
 
 - Senhas criptografadas com bcryptjs
