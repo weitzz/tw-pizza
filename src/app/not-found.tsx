@@ -2,11 +2,11 @@ import Link from "next/link";
 
 export default function NotFound() {
     return (
-        <div className='text-center mx-auto container'>
-            <h1 style={{ fontSize: "3rem" }}>404</h1>
-            <p>Página não encontrada </p>
+        <main className='container mx-auto  text-center'>
+            <h1 className="text-2xl">404</h1>
+            <h3 className="text-xl">Página não encontrada </h3>
             <Link href="/" className="text-2xl">Voltar para a home</Link>
 
-        </div>
+        </main>
     );
 }
