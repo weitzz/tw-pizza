@@ -9,6 +9,7 @@ import { formatPrice } from "@/lib/utils"
 import { useAuthStore } from "@/stores/authStore"
 import { apiWithAuth } from "@/lib/axios"
 
+
 const CartList = () => {
     const auth = useAuthStore()
     const cart = useCartStore()
@@ -31,6 +32,10 @@ const CartList = () => {
             const orderReq = await apiWithAuth.post('/order/new', {
                 cart: cart.items
             })
+
+            if (orderReq.status === 201) {
+                window.location.href = orderReq.data.url
+            }
         }
     }
     return (

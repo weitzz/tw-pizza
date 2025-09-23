@@ -29,6 +29,18 @@ export const createNewOrder = async (userId: number, cart: CartItem[]) => {
                 }
             }
         },
+        include: {
+            orderProducts: {
+                select: {
+                    quantity: true,
+                    product: {
+                        select: {
+                            name: true, price: true
+                        }
+                    }
+                }
+            }
+        }
 
     })
 
