@@ -1,6 +1,8 @@
 import { prisma } from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
+import { headers } from 'next/headers'
 import { v4 } from 'uuid'
+import { tr } from 'zod/v4/locales'
 
 export const hasEmail = async (email: string) => {
     const user = await prisma.user.findUnique({
@@ -47,4 +49,25 @@ export const createUserToken = async (userId: number) => {
         data: { token }
     })
     return token;
+}
+
+
+export const getLoggedUserFromHeader = async () => {
+    const headersList = await headers()
+    const authorization = headersList.get('authorization')?.split(' ')
+    if (!authorization) return null
+    if (authorization[0] !== 'Token') return null
+    if (!authorization[1]) return null
+    const token = authorization[1]
+    const user = await prisma.user.findFirst({
+        where: { token },
+        select: {
+            id: true,
+            name: true,
+            email: true
+        }
+    })
+
+    return user
+
 }

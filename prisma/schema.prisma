@@ -43,6 +43,7 @@ model Order {
   updatedAt     DateTime?       @updatedAt
   obs           String?
   status        OrderStatus     @default(INITIALIZED)
+  subtotal      Decimal
   user          User            @relation(fields: [userId], references: [id])
   orderProducts OrderProducts[]
 }
@@ -60,7 +61,8 @@ model OrderProducts {
   id        Int     @id @default(autoincrement())
   orderId   Int
   productId Int
-  quantity  Int     @default(1)
+  quantity  Int
+  price     Decimal
   order     Order   @relation(fields: [orderId], references: [id])
   product   Product @relation(fields: [productId], references: [id])
 }

@@ -6,8 +6,11 @@ import { useEffect, useState } from "react"
 import { Button } from "../ui/button"
 import CartProduct from "./cartProduct"
 import { formatPrice } from "@/lib/utils"
+import { useAuthStore } from "@/stores/authStore"
+import { apiWithAuth } from "@/lib/axios"
 
 const CartList = () => {
+    const auth = useAuthStore()
     const cart = useCartStore()
     const products = useProducstStore()
     const [subtotal, setSubtotal] = useState(0)
@@ -17,31 +20,42 @@ const CartList = () => {
         let sub = 0
         for (let item of cart.items) {
             const prod = products.products.find(product => product.id === item.productId)
-            if(prod) sub += item.quantity * parseFloat(prod.price.toString())
+            if (prod) sub += item.quantity * parseFloat(prod.price.toString())
         }
         setSubtotal(sub)
     }
-    useEffect(calculateSubtotal,[cart])
+    useEffect(calculateSubtotal, [cart])
 
-
+    const handleFinish = async () => {
+        if (cart.items.length > 0) {
+            const orderReq = await apiWithAuth.post('/order/new', {
+                cart: cart.items
+            })
+        }
+    }
     return (
-      <section>
+        <>
             <div className="flex flex-col gap-3 my-5">
                 {cart.items.map(item => (
-                    <CartProduct key={ item.productId} data={item} />
-                    ))}
+                    <CartProduct key={item.productId} data={item} />
+                ))}
                 <div className="my-4 text-right">
-                    <p>Sub-total: { formatPrice(subtotal)}</p>
-                    <p>Frete:{ formatPrice(shippingCost)}</p>
-                    <p>Total:{ formatPrice(subtotal+shippingCost)}</p>
+                    <p>Sub-total: {formatPrice(subtotal)}</p>
+                    <p>Frete:{formatPrice(shippingCost)}</p>
+                    <p>Total:{formatPrice(subtotal + shippingCost)}</p>
 
                 </div>
-          
+
             </div>
-            <Button>Finalizar compra</Button>
-      
-      </section>
-  )
+            {auth.token &&
+                <Button onClick={handleFinish} className="bg-green-700 hover:bg-green-900">Finalizar Compra</Button>
+            }
+            {!auth.token &&
+                <Button onClick={() => auth.setOpen(true)}>Login / Cadastro</Button>
+            }
+
+        </>
+    )
 }
 
 export default CartList

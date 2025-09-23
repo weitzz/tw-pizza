@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { CustomInput } from "../layout/customInput"
 import { Button } from "../ui/button"
-import api from "@/lib/axios"
+import { api } from "@/lib/axios"
 import { validateEmailSchema } from "@/lib/validations"
 
 type Props = {

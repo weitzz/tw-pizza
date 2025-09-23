@@ -12,7 +12,7 @@ async function Header() {
   const token = cookieStore.get('token')
   return (
     <header className='container mx-auto flex my-4 p-5 items-center justify-between bg-secondary rounded-md'>
-      <Link href="/" className={`${caveatBrush.className} flex items-center text-3xl font-bold`}><Pizza className="mr-2 text-red-600" /> TW-Pizzas</Link>
+      <Link href="/" className={`${caveatBrush.className} flex items-center text-3xl font-bold`}><Pizza className="mr-2 text-red-600 hover:text-red-400" />TW-Pizzas</Link>
       <div className='flex gap-2'>
         <LoginButton initialState={token ? true : false} />
         <CartButton />

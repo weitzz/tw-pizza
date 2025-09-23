@@ -3,7 +3,7 @@ import { useAuthStore } from '@/stores/authStore'
 import React, { useState } from 'react'
 import { CustomInput } from '../layout/customInput'
 import { loginSchema } from '@/lib/validations'
-import api from '@/lib/axios'
+import { api } from '@/lib/axios'
 import { Button } from '../ui/button'
 
 type Props = {

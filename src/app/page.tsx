@@ -1,6 +1,6 @@
 import PizzaList from "@/components/home/pizzaList";
 import Header from "@/components/layout/header";
-import api from "@/lib/axios";
+import { api } from "@/lib/axios";
 
 export default async function Home() {
   const pizzaRequest = await api.get('/pizzas');
