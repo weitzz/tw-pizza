@@ -39,6 +39,15 @@ Projeto de pizzaria desenvolvido com Next.js, integrando pagamento via Strapi, a
 
 
 
+![tela inicial](image.png)
+
+
+
+![carrinho](image-1.png)
+
+
+
+![tela finalizar compra com stripe](image-2.png)
 ---
 
 ### 🚀 Como Rodar
