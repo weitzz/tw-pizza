@@ -1,12 +1,13 @@
 'use client'
 import { useCartStore } from '@/stores/cartStore'
 import { Button } from '../ui/button'
+import { ShoppingCart } from "lucide-react"
 
 
 const CartButton = () => {
-   const cart = useCartStore()
+  const cart = useCartStore()
   return (
-    <Button onClick={() =>cart.setOpen(true)}>Carrinho <i className="ri-shopping-cart-2-line"></i></Button>
+    <Button onClick={() => cart.setOpen(true)} className="bg-orange-600 hover:bg-orange-500 cursor-pointer">Carrinho <ShoppingCart className="inline-block" /></Button>
   )
 }
 

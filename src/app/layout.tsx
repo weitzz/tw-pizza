@@ -35,7 +35,8 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased  ${caveatBrush.variable} bg-[linear-gradient(rgba(255,255,255,1),rgba(255,255,255,0.8),rgba(255,255,255,1)),url('/background.png')] 
+            bg-contain bg-repeat bg-center`}
       >
         {children}
         <Cart />

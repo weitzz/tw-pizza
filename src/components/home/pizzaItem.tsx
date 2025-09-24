@@ -15,28 +15,28 @@ type Props = {
 const PizzaItem = ({ data }: Props) => {
     const cart = useCartStore()
 
-const handleAddToCart = () => {
-    cart.addItem({
-        productId: data.id,
-        quantity: 1
-    })
-    cart.setOpen(true)
-}
+    const handleAddToCart = () => {
+        cart.addItem({
+            productId: data.id,
+            quantity: 1
+        })
+        cart.setOpen(true)
+    }
 
 
-  return (
-      <div className="text-sm bg-secondary p-4 rounded-md">
-          <Image src={data.image} alt={data.name} width={200} height={200} className="w-full mb-3" />
-          <h3 className="font-bold text-lg">{data.name}</h3>
+    return (
+        <div className="text-sm bg-secondary p-4 rounded-md">
+            <Image src={data.image} alt={data.name} width={200} height={200} className="w-full mb-3" />
+            <h3 className="font-bold text-lg">{data.name}</h3>
             <span className="font-semibold">{formatPrice(data.price)}</span>
-          <p className="truncate mb-3">{data.ingredients}</p>
-          <div className="text-center">
-          <Button onClick={() => handleAddToCart()}>
-              Adicionar ao Carrinho</Button>
-              
-          </div>
-    </div>
-  )
+            <p className=" mb-3">{data.ingredients}</p>
+            <div className="text-center">
+                <Button onClick={() => handleAddToCart()} className="bg-orange-600 hover:bg-orange-500 cursor-pointer">
+                    Adicionar ao Carrinho</Button>
+
+            </div>
+        </div>
+    )
 }
 
 export default PizzaItem
