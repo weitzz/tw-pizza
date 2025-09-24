@@ -1,11 +1,9 @@
-import { Caveat_Brush } from 'next/font/google'
 import React from 'react'
 import SearchInput from '../search/searchInput'
 import { api } from '@/lib/axios'
 import PizzaList from './pizzaList'
 
 
-const caveatBrush = Caveat_Brush({ subsets: ['latin'], weight: '400' })
 const Menu = async () => {
     const pizzaRequest = await api.get('/pizzas');
     const pizzas = pizzaRequest.data ?? [];
